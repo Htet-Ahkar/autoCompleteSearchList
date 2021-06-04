@@ -35,12 +35,25 @@ body {
   height: 80%;
 }
 
+/*Modal*/
+
 .enteredProductToShow {
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: 200ms ease-in-out;
   border: 1px solid black;
+  border-radius: 10px;
+  z-index: 10;
+  background-color: white;
+  width: 500px;
+  max-width: 80%;
 }
 
 .enteredProductImage {
@@ -48,4 +61,37 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+
+.enteredProductName,
+.enteredProductPrice,
+.enteredProductDescription,
+.enteredProductCategory,
+.enteredProductImage {
+  padding: 10px 15px;
+}
+
+.closeButton {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 25px;
+  margin-left: 95%;
+}
+
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+  transition: 200ms ease-in-out;
 }

@@ -266,6 +266,9 @@ const navigateAndSelectProduct = (key) => {
     productItemContainerToSelect.classList.add("selected");
   } else {
     //Start
+
+    const overlayTag = document.getElementById("overlay");
+
     const enteredProduct = selectProduct(indexToSelect);
     const enteredProductId = enteredProduct.id.toString();
     const enteredProductArray = products.filter((ArrayElement) => {
@@ -275,9 +278,13 @@ const navigateAndSelectProduct = (key) => {
     enteredProductToShow.id = enteredProductArray[0].id;
     enteredProductToShow.classList.add("enteredProductToShow");
 
+    const closeButton = document.createElement("button");
+    closeButton.classList.add("closeButton");
+    closeButton.append("X");
+
     const enteredProductName = document.createElement("div");
     enteredProductName.classList.add("enteredProductName");
-    enteredProductName.append("Name: " + enteredProductArray[0].title);
+    enteredProductName.append("Title: " + enteredProductArray[0].title);
 
     const enteredProductPrice = document.createElement("div");
     enteredProductPrice.classList.add("enteredProductPrice");
@@ -300,6 +307,7 @@ const navigateAndSelectProduct = (key) => {
     enteredProductImage.src = enteredProductArray[0].image;
 
     enteredProductToShow.append(
+      closeButton,
       enteredProductName,
       enteredProductPrice,
       enteredProductDescription,
@@ -307,6 +315,25 @@ const navigateAndSelectProduct = (key) => {
       enteredProductImage
     );
     resultContainerTag.append(enteredProductToShow);
+
+    overlayTag.style.display = "block";
+    /*
+    overlayTag.addEventListener("click", () => {
+      enteredProductToShow.remove();
+      overlayTag.style.display = "none";
+    });
+    closeButton.addEventListener("click", () => {
+      enteredProductToShow.remove();
+      overlayTag.style.display = "none";
+    });
+    */
+
+    [overlayTag, closeButton].forEach((closeAll) => {
+      closeAll.addEventListener("click", () => {
+        enteredProductToShow.remove();
+        overlayTag.style.display = "none";
+      });
+    });
   }
 };
 //End
